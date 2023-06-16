@@ -1,6 +1,6 @@
 const defaults = {
     routePrefix: "",
-    maxRequestsPerSecond: 2,
+    maxRequestsPerSecond: 100,
     blockRequestStatusCode: 429,
     blockRequestMessage: "Rate Limit Exceeded. Please try again later.",
 }
@@ -11,6 +11,7 @@ function RateLimiter(request, response, next) {
     const ipAddress = request.ip;
     const timestamp = Math.round(Date.now() / 1000);
     const key = defaults.routePrefix + ipAddress;
+
     const store = memory.get(key);
 
     if (store) {
@@ -29,4 +30,4 @@ function RateLimiter(request, response, next) {
     next();
 }
 
-export default RateLimiter;
+export { RateLimiter, defaults as config };
