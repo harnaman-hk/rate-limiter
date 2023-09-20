@@ -15,5 +15,8 @@
   "exports": {
     ".": "./rateLimiter.js"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "redis": "^4.6.9"
+  }
 }

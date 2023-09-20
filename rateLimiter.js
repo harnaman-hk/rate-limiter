@@ -1,30 +1,38 @@
+import { createRedisClient } from "./redisClient.js";
+
 const defaults = {
+    redisConfig: {
+        host: "127.0.0.1",
+        port: 6379
+    },
     routePrefix: "",
     maxRequestsPerSecond: 100,
     blockRequestStatusCode: 429,
     blockRequestMessage: "Rate Limit Exceeded. Please try again later.",
 }
 
-const memory = new Map();
+let redisClient = null;
+const redisRecordExpiry = 1;
 
-function RateLimiter(request, response, next) {
+async function RateLimiter(request, response, next) {
     const ipAddress = request.ip;
-    const timestamp = Math.round(Date.now() / 1000);
     const key = defaults.routePrefix + ipAddress;
 
-    const store = memory.get(key);
+    if (redisClient == null) {
+        redisClient = await createRedisClient(defaults.redisConfig.host, defaults.redisConfig.port)
+                            .catch(err => { throw(err) });
+    }
 
-    if (store) {
-        const counter = store[timestamp] ?? 0;
-        if (counter >= defaults.maxRequestsPerSecond) {
-            return response.status(defaults.blockRequestStatusCode).send({
+    const requestsServed = await redisClient.incr(key);
+
+    if (requestsServed == 1) {
+        await redisClient.expire(key, redisRecordExpiry);
+    }
+
+    if (requestsServed > defaults.maxRequestsPerSecond) {
+        return response.status(defaults.blockRequestStatusCode).send({
                 message: defaults.blockRequestMessage
             });
-        } else {
-            store[timestamp] = counter + 1;
-        }
-    } else {
-        memory.set(key, {[timestamp]: 1});
     }
     
     next();
