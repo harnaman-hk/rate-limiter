@@ -3,6 +3,9 @@
 API rate limiter restricts the number calls made by a client to an API. The module can be plugged in as a middleware for any endpoint. We can add a rate limit to a specific route or to all the APIs exposed by a service.
 
 ### Design
+<details open>
+    <summary>Use Redis as Memory</summary>
+</details>
 <details>
     <summary>Use JavaScript HashMap as Memory</summary>
     <ol>
