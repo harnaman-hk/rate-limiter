@@ -5,6 +5,11 @@ API rate limiter restricts the number calls made by a client to an API. The modu
 ### Design
 <details open>
     <summary>Use Redis as Memory</summary>
+    <ol>
+        <li>Design Description</li>
+            We use redis store of <code>ipAddress -> counter</code> with a time to live of 1 second to maintain record of number of requests served in the time unit of one second.
+        <br/>
+    </ol>
 </details>
 <details>
     <summary>Use JavaScript HashMap as Memory</summary>
