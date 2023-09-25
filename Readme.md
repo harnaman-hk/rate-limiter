@@ -1,6 +1,7 @@
 ## API Rate Limiter
 
 API rate limiter restricts the number calls made by a client to an API. The module can be plugged in as a middleware for any endpoint. We can add a rate limit to a specific route or to all the APIs exposed by a service.
+This project aims to develop a rate limiter middleware which can be plugged in any application.
 
 ### Design
 <details open>
@@ -11,8 +12,8 @@ API rate limiter restricts the number calls made by a client to an API. The modu
         <br/>
     </ol>
 </details>
-<details>
-    <summary>Use JavaScript HashMap as Memory</summary>
+<!-- <details>
+    <summary>Use JavaScript HashMap as Memory [Initial Approach]</summary>
     <ol>
         <li>Design Description</li>
             We use a hashmap of <code> ipAddress -> {timestamp: counter} </code> to keep a count of number of requests made by a client in the time unit of one second. We take <code> Date.now() / 1000 </code> as the timestamp for an incoming request. If the counter for a request already has the value of throttle limit, we block the incoming request by reverting and HTTP status code 429 and message.
@@ -31,7 +32,7 @@ API rate limiter restricts the number calls made by a client to an API. The modu
             <ol>
             </ol>
     </ol>
-</details>
+</details> -->
 
 
 
