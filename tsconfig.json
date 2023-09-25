@@ -1,0 +1,26 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "module": "es2022",
+        "target": "ES2022",
+        "lib": ["ES2022"],
+        "sourceMap": true,
+        "strict": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "resolveJsonModule": true,
+        "incremental": true,
+        "extendedDiagnostics": false,
+        "forceConsistentCasingInFileNames": true,
+        "rootDir": ".",
+    },
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
+    },
+    "include": ["*"],
+    "exclude": ["node_modules"]
+  }
+  

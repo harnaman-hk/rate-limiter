@@ -1,12 +1,14 @@
 import express from "express";
-import { RateLimiter, config } from "../rateLimiter.js";
+import { RateLimiter, config as rateLimiterConfig } from "../rateLimiter";
 
 const app = express();
 const PORT = 8080;
 
-config.maxRequestsPerSecond = 3;
+rateLimiterConfig.maxRequestsPerSecond = 3;
 
-app.get("/", RateLimiter, (req, res) => {
+app.use(RateLimiter);
+
+app.get("/", (req, res) => {
     res.status(200).send({
         success: true,
         message: "request is served"
