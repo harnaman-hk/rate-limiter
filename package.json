@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node examples/server",
+    "start": "ts-node src/server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Harnaman Kaur",
