@@ -37,4 +37,4 @@ This project aims to develop a rate limiter middleware which can be plugged in a
 
 
 ### Example
-Refer to [examples/server.js](examples/server.js) for a demo implementation of the rate limiter module.
+Refer to [examples/server.ts](examples/server.ts) for a demo implementation of the rate limiter module.
