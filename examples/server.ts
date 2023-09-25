@@ -1,5 +1,5 @@
 import express from "express";
-import { RateLimiter, config as rateLimiterConfig } from "../rateLimiter";
+import { RateLimiter, config as rateLimiterConfig } from "../src/rateLimiter";
 
 const app = express();
 const PORT = 8080;
